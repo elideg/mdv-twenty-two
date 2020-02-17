@@ -1,0 +1,16 @@
+<div class="container d-flex mt-3">
+  <div class="col-6">
+    <mdv-twenty-two-rockets-list [rockets]="rockets$ | async"
+                          (selected)="selectRocket($event)"
+                          (deleted)="deleteRocket($event)">
+    </mdv-twenty-two-rockets-list>
+  </div>
+
+  <div class="col-6">
+    <mdv-twenty-two-rockets-details [rocket]="selectedRocket$ | async"
+                              [form]="form"
+                              (saved)="saveRocket($event)"
+                              (cancelled)="cancel()">
+    </mdv-twenty-two-rockets-details>
+  </div>
+</div>

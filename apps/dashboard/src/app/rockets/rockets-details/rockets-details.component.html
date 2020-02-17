@@ -1,0 +1,37 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title *ngIf="currentRocket.id; else elseCreateNew"><h1>{{ originalName }}</h1></mat-card-title>
+    <ng-template #elseCreateNew><h1 class="border-bottom">Create a New Rocket</h1></ng-template>
+  </mat-card-header>
+  <form [formGroup]="form" #formDirective="ngForm" (ngSubmit)="saveForm(formDirective)">
+    <mat-card-content>
+
+      <mat-form-field class="w-100">
+        <input matInput placeholder="Rocket Name" type="text" name="rocket_name" formControlName="rocket_name">
+        <mat-error *ngIf="form.get('rocket_name').hasError('required')">Required Field</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-100">
+      <textarea matInput placeholder="Description" type="text" name="description" formControlName="description"></textarea>
+      <mat-error *ngIf="form.get('description').hasError('required')">Required Field</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-100">
+      <textarea matInput placeholder="Company" type="text" name="company" formControlName="company"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="w-100">
+      <textarea matInput placeholder="First Flight" type="text" name="text" formControlName="first_flight"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="w-100">
+      <textarea matInput placeholder="Success Rate" type="text" name="success_rate_pct" formControlName="success_rate_pct"></textarea>
+      </mat-form-field>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid">{{ currentRocket.id ? 'Update' : 'Create' }}</button>
+      <button type="button" mat-button (click)="cancel()">Cancel</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
